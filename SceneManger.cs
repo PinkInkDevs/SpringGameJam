@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class SceneManger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    private float timer = 0.0f;
+    private int daysPast = 0;   
+    //public GameObject flowers[]
+
+
+
+    void NewDay()
     {
+        daysPast++;
         
+
+
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        timer += Time.deltaTime;
+
+        //Debug.Log(timer);
+
     }
 }
