@@ -13,9 +13,12 @@ public class SceneManger : MonoBehaviour
 
     void NewDay()
     {
+        timer = 0.0f;
         daysPast++;
-        BasePlant flowersScript = flowers.GetComponent<BasePlant>();
-
+        BasePlant flowersScript = flowers.GetComponent<Rose>();
+        flowersScript.Watered();
+        flowersScript.Grow();
+        flowersScript.ChangeSprite();
 
 
     }
@@ -25,6 +28,10 @@ public class SceneManger : MonoBehaviour
     {
         timer += Time.deltaTime;
 
+        if(timer > 20)
+        {
+            NewDay();
+        }
         //Debug.Log(timer);
 
     }

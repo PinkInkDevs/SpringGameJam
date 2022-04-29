@@ -8,6 +8,10 @@ public class BasePlant : MonoBehaviour
     public int growthLevel = 0;
     private int maxGrowth = 3;
     public bool readyToBePicked = false;
+    public SpriteRenderer flowerStage;
+    public Sprite seeds;
+    public Sprite sprout;
+    public Sprite flower;
 
 
     // Update is called once per frame
@@ -17,12 +21,12 @@ public class BasePlant : MonoBehaviour
     }
 
     //Watered is called when plant is being watered
-    void Watered()
+    public void Watered() //Will check 
     {
         watered = true;
     }
 
-    void Grow(){
+    public void Grow(){
         if (watered)
         {
             growthLevel++;
@@ -32,6 +36,26 @@ public class BasePlant : MonoBehaviour
         {
             readyToBePicked = true;
         }
+    }
+
+    public void ChangeSprite()
+    {
+
+        Debug.Log("Here");
+        if (growthLevel == 0)
+        {
+            flowerStage.sprite = seeds;
+        }
+        else if (growthLevel == 1)
+        {
+            flowerStage.sprite = sprout;
+        }
+        else if (growthLevel == 2)
+        {
+            flowerStage.sprite = flower;
+        }
+
+
     }
 
     void PickUp(){
