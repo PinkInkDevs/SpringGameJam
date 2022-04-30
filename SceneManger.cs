@@ -7,8 +7,14 @@ public class SceneManger : MonoBehaviour
     private float timer = 0.0f;
     private int daysPast = 0;
     public GameObject flowers;
+    private GridSystem grid;
     
+    void Start()
+    {
+        grid = new GridSystem(4, 2, 1.0f, new Vector3(0, 0));
 
+
+    }
 
 
     void NewDay()
