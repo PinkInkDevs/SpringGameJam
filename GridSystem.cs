@@ -22,6 +22,12 @@ public class GridSystem : MonoBehaviour {
     private Vector3 tempPos;
     //just a holder object
     private GameObject hold;
+
+
+    public GameObject GetPlant(int x, int y) { return plantArray[x, y]; }
+    public int GetWidth() { return width; }
+    public int GetHeight() { return height; }   
+
     
     public GridSystem(int width, int height, float cellSize, Vector3 originPos, GameObject template){
         this.width = width;
@@ -123,14 +129,14 @@ public class GridSystem : MonoBehaviour {
                     {
                         plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
                         plantArray[x,y].GetComponent<Tulip>().rememberTile = clone[x,y];
-                        plantArray[x,y].transform.localScale = new Vector3(0.5f,0.5f,1.0f);
+                        //plantArray[x,y].transform.localScale = new Vector3(0.5f,0.5f,1.0f);
                         clone[x,y].GetComponent<SoilTile>().OccupieTile();
 
                     } else if (tool == 58)
                     {
                         plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
                         plantArray[x,y].GetComponent<Rose>().rememberTile = clone[x,y];
-                        plantArray[x,y].transform.localScale = new Vector3(0.5f,0.5f,1.0f);
+                        //plantArray[x,y].transform.localScale = new Vector3(0.5f,0.5f,1.0f);
                         clone[x,y].GetComponent<SoilTile>().OccupieTile();
 
                     }
