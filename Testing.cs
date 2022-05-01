@@ -10,21 +10,29 @@ public class Testing : MonoBehaviour
     private int[] items = new int[] {1,2,56};
     private int heldItemIndex = 0;
     public GameObject soilTemplate;
+    private Vector3 temp;
     
 
     public void Start(){ 
-        grid = new GridSystem(4 ,2 , 1f, new Vector3(20,0), soilTemplate);
+        grid = new GridSystem(6 ,8 , 1f, new Vector3(20,0), soilTemplate);
     }
 
     public void Update(){
-        //grid.SetValue(1,1,56);
         if (Input.GetMouseButtonDown(0)){
             Debug.Log("here");
-            grid.SetValue(GJLib.GetMouseWorldPosition(), items[heldItemIndex]);
+            temp = GJLib.GetMouseWorldPosition();
+            if ( grid.GetValue(temp) !=-1)
+            {
+                grid.SetValue(temp, items[heldItemIndex]);
+                //seeds not yet made thus null
+                grid.UpdateSoilTile(temp, items[heldItemIndex]);
+            }
+            
         }
 
         if (Input.GetMouseButtonDown(1)){
             Debug.Log(grid.GetValue(GJLib.GetMouseWorldPosition()));
+            
         }
         //temp for holding item
         if (Input.GetKeyDown(KeyCode.Alpha1))
@@ -41,6 +49,14 @@ public class Testing : MonoBehaviour
         {
             Debug.Log("key 3 was pressed");
             heldItemIndex=2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            grid.AllSoilDryUp();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            grid.AllSoilWatered();
         }
 
     }

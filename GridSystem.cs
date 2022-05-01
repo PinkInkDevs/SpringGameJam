@@ -15,6 +15,8 @@ public class GridSystem : MonoBehaviour {
     private GameObject[,] clone;
     private Vector3 tempPos;
 
+    private GameObject hold;
+
     
     public GridSystem(int width, int height, float cellSize, Vector3 originPos, GameObject soilTemplate){
         this.width = width;
@@ -32,7 +34,7 @@ public class GridSystem : MonoBehaviour {
                 tempPos = (GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) * .5f);
                 debugTextArray[x,y] = GJLib.CreateWorldText(gridArray[x,y].ToString(), null, tempPos, 2, Color.white, TextAnchor.MiddleCenter);
                 //creates tile object placement
-                clone[x,y] = Instantiate(soilTemplate, tempPos, Quaternion.identity);
+                clone[x,y] = PlaceTiles(soilTemplate,tempPos);
                 Debug.DrawLine(GetWorldPosition(x,y), GetWorldPosition(x+1,y), Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(x,y), GetWorldPosition(x,y+1), Color.white, 100f);
             }
@@ -76,7 +78,48 @@ public class GridSystem : MonoBehaviour {
         GetXY(worldPosition, out x, out y);
         return GetValue(x,y);
     }
-    //methods for placing tiles and updating them.
+    //methods for placing tiles and updating them/watering and plant taking up pos.
+    private GameObject PlaceTiles(GameObject soilTemplate, Vector3 tempPos)
+    {
+        return Instantiate(soilTemplate, tempPos, Quaternion.identity);
+    }
+    //water Soil
+    public void UpdateSoilTile(Vector3 worldPosition, int tool)
+    {
+        if (tool == 2){
+            int x,y;
+            GetXY(worldPosition, out x, out y);
+            if (GetValue(x,y)!= -1)
+            {
+                hold = clone[x,y];
+                hold.GetComponent<SoilTile>().Water();
+            }
+        }
+        if (tool == 56){
+            int x,y;
+            GetXY(worldPosition, out x, out y);
+            if (GetValue(x,y)!= -1)
+            {
+                hold = clone[x,y];
+                hold.GetComponent<SoilTile>().OccupieTile();
+            }
+        }
+    }
+    //all soilTiles dry up
+    public void AllSoilDryUp()
+    {
+        foreach(GameObject item in clone)
+        {
+            item.GetComponent<SoilTile>().Unwater();
+        }
+    }
+    public void AllSoilWatered()
+    {
+        foreach(GameObject item in clone)
+        {
+            item.GetComponent<SoilTile>().Water();
+        }
+    }
 
 
 }
