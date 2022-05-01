@@ -17,7 +17,7 @@ public class HouseEnter : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("It's Hitting");
+        
 
         house.sprite = doorOpened;
 

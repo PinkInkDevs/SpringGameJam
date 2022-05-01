@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3240793358075269247}
   - component: {fileID: 3240793358075269216}
   - component: {fileID: 3240793358075269217}
-  - component: {fileID: 3240793358075269218}
   m_Layer: 0
   m_Name: RoseObj
   m_TagString: Untagged
@@ -29,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 17, y: 5.64, z: -15.971394}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -42,15 +42,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 3240793358075269219}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da322d33b89ace044be13f32c79d7809, type: 3}
+  m_Script: {fileID: 11500000, guid: f7ae523f9ec64d54d8c41f05b01ade08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   growthLevel: 0
+  maxGrowth: 3
   readyToBePicked: 0
   flowerStage: {fileID: 3240793358075269217}
-  seeds: {fileID: 857312311372029537, guid: 2cefb3c0f3c20ee449935dc9b4495d96, type: 3}
-  sprout: {fileID: -5225234954479053693, guid: 2cefb3c0f3c20ee449935dc9b4495d96, type: 3}
-  flower: {fileID: -8910283456319743358, guid: 2cefb3c0f3c20ee449935dc9b4495d96, type: 3}
+  seeds: {fileID: -119819377, guid: 601d040e5a0452d4c9d5faaa8944ab28, type: 3}
+  sprout: {fileID: 842270879, guid: 601d040e5a0452d4c9d5faaa8944ab28, type: 3}
+  flower: {fileID: 1240990373, guid: 601d040e5a0452d4c9d5faaa8944ab28, type: 3}
   rememberTile: {fileID: 0}
 --- !u!212 &3240793358075269217
 SpriteRenderer:
@@ -63,6 +64,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -91,34 +93,15 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 857312311372029537, guid: 2cefb3c0f3c20ee449935dc9b4495d96, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -119819377, guid: 601d040e5a0452d4c9d5faaa8944ab28, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3240793358075269218
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3240793358075269219}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da322d33b89ace044be13f32c79d7809, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  growthLevel: 0
-  readyToBePicked: 0
-  flowerStage: {fileID: 0}
-  seeds: {fileID: 0}
-  sprout: {fileID: 0}
-  flower: {fileID: 0}
-  rememberTile: {fileID: 0}

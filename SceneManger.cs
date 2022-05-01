@@ -21,10 +21,9 @@ public class SceneManger : MonoBehaviour
     {
         timer = 0.0f;
         daysPast++;
-        BasePlant flowersScript = flowers.GetComponent<Rose>();
-        flowersScript.Watered();
-        flowersScript.Grow();
-        flowersScript.ChangeSprite();
+        //BasePlant flowersScript = flowers.GetComponent<Rose>();
+        //flowersScript.Grow();
+        //flowersScript.ChangeSprite();
 
 
     }
