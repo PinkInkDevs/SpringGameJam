@@ -158,7 +158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 18}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &678481372
@@ -184,10 +184,14 @@ MonoBehaviour:
   m_text: "Hey, mom, we just finished building the farm. Things have been going pretty
     well. Marla has been busy opening the flower shop. Thank you again for helping
     us pay this week's bank loan. Now we can manage on our own.\r\n\r\nLove Rebecca
-    & Marla.\r\n\r\n\r\n\r\nTutorial:\r\nLet\u2019s start farming! The goal is to
-    plant your flowers and cultivate them. Easy right? Oh yeah, don\u2019t forget
-    to water them or they wont grow!!\r\n\r\nPress 1 to cultivate, 2 to water and
-    3-5 to plant flower seeds!"
+    & Marla.\r\n\r\n\r\nTutorial:\r\nLet\u2019s start farming! The goal is to plant
+    your flowers and cultivate them. Easy right? Oh yeah, don\u2019t forget to water
+    them or they wont grow!!\r\n\r\nA day cycle is 1 minute and 40 seconds. If you
+    want to end the day early go back home and walk through the door.\r\n\r\nPress
+    1 to cultivate, 2 to water and 3-5 to plant flower seeds!\r\n\r\n\r\n\r\nTutorial:\r\nLet\u2019s
+    start farming! The goal is to plant your flowers and cultivate them. Easy right?
+    Oh yeah, don\u2019t forget to water them or they wont grow!!\r\n\r\nPress 1 to
+    cultivate, 2 to water and 3-5 to plant flower seeds!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -214,8 +218,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 24
-  m_fontSizeBase: 24
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -250,7 +254,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: -440.88885, y: -195.27966, z: -438.8755, w: -213.39828}
+  m_margin: {x: -440.88885, y: -195.27966, z: -438.8755, w: -232.40265}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -341,7 +345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 734914363}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.52, y: -4.53, z: 0}
+  m_LocalPosition: {x: -1.9, y: -4.67, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5512,7 +5516,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2057317946}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.5, y: -4.21, z: 0}
+  m_LocalPosition: {x: 6.35, y: -4.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

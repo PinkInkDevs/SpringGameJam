@@ -25,9 +25,9 @@ public class SceneManger : MonoBehaviour
     public GameObject roseTemplate;
     private Vector3 temp;
 
-    public int seed56 = 16;
-    public int seed57 = 16;
-    public int seed58 = 16;
+    public int seed56 = 0;
+    public int seed57 = 0;
+    public int seed58 = 0;
 
     public GameObject roseText;
     public GameObject daiseyText;
@@ -121,22 +121,22 @@ public class SceneManger : MonoBehaviour
             {
                 grid.SetValue(temp, items[heldItemIndex]);
                 //seeds not yet made thus null
-                if (items[heldItemIndex] == 56 && seed56 > 0)
+                if (items[heldItemIndex] == 56 )
                 {
                     
-                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], daiseyTemplate)) { seed56--; }
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], daiseyTemplate)) { seed56++; }
                     
                 }
-                else if (items[heldItemIndex] == 57 && seed57 > 0)
+                else if (items[heldItemIndex] == 57 )
                 {
                     
-                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], tulipTemplate)) { seed57--; }
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], tulipTemplate)) { seed57++; }
                     
                 }
-                else if (items[heldItemIndex] == 58 && seed58 > 0)
+                else if (items[heldItemIndex] == 58 )
                 {
                    
-                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], roseTemplate)) { seed58--; }
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], roseTemplate)) { seed58++; }
                    
                 }
                 else
