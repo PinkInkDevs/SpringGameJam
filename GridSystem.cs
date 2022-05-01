@@ -10,31 +10,38 @@ public class GridSystem : MonoBehaviour {
     private float cellSize;
     private Vector3 originPos;
     private int[,] gridArray;
+
     private TextMesh[,] debugTextArray;
+
     private GameObject soilTemplate;
     private GameObject[,] clone;
+
+    private GameObject plantTemplate;
+
+    private GameObject[,] plantArray;
     private Vector3 tempPos;
-
+    //just a holder object
     private GameObject hold;
-
     
-    public GridSystem(int width, int height, float cellSize, Vector3 originPos, GameObject soilTemplate){
+    public GridSystem(int width, int height, float cellSize, Vector3 originPos, GameObject template){
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPos = originPos;
-        this.soilTemplate = soilTemplate;
+        this.soilTemplate = template;
+       
 
         gridArray = new int[width, height];
         debugTextArray = new TextMesh[width, height];
         clone = new GameObject[width, height];
+        plantArray = new GameObject[width, height];
 
         for (int x = 0; x < gridArray.GetLength(0); x++){
             for (int y = 0; y<gridArray.GetLength(1); y++){
                 tempPos = (GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) * .5f);
                 debugTextArray[x,y] = GJLib.CreateWorldText(gridArray[x,y].ToString(), null, tempPos, 2, Color.white, TextAnchor.MiddleCenter);
                 //creates tile object placement
-                clone[x,y] = PlaceTiles(soilTemplate,tempPos);
+                clone[x,y] = CreateTiles(soilTemplate,tempPos);
                 Debug.DrawLine(GetWorldPosition(x,y), GetWorldPosition(x+1,y), Color.white, 100f);
                 Debug.DrawLine(GetWorldPosition(x,y), GetWorldPosition(x,y+1), Color.white, 100f);
             }
@@ -79,12 +86,16 @@ public class GridSystem : MonoBehaviour {
         return GetValue(x,y);
     }
     //methods for placing tiles and updating them/watering and plant taking up pos.
-    private GameObject PlaceTiles(GameObject soilTemplate, Vector3 tempPos)
+    public GameObject CreateTiles(GameObject soilTemplate, Vector3 tempPos)
     {
         return Instantiate(soilTemplate, tempPos, Quaternion.identity);
     }
-    //water Soil
-    public void UpdateSoilTile(Vector3 worldPosition, int tool)
+    public GameObject CreatePlants(GameObject plantTemplate, Vector3 tempPos)
+    {
+        return Instantiate(plantTemplate, tempPos, Quaternion.identity);
+    }  
+    //water Soil plant and harvest
+    public void UpdateSoilTile(Vector3 worldPosition, int tool, GameObject plantTemplate = null)
     {
         if (tool == 2){
             int x,y;
@@ -95,13 +106,36 @@ public class GridSystem : MonoBehaviour {
                 hold.GetComponent<SoilTile>().Water();
             }
         }
-        if (tool == 56){
+        else if (tool > 2){
             int x,y;
             GetXY(worldPosition, out x, out y);
-            if (GetValue(x,y)!= -1)
-            {
-                hold = clone[x,y];
-                hold.GetComponent<SoilTile>().OccupieTile();
+            if (GetValue(x,y) != -1)
+            {  
+
+                if (clone[x,y].GetComponent<SoilTile>().IsOccupied() != true)
+                {
+                    if (tool == 56)
+                    {
+                        plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
+                        plantArray[x,y].GetComponent<Daisey>().rememberTile = clone[x,y];
+                        clone[x,y].GetComponent<SoilTile>().OccupieTile();
+                    } else if (tool == 57)
+                    {
+                        plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
+                        plantArray[x,y].GetComponent<Tulip>().rememberTile = clone[x,y];
+                        plantArray[x,y].transform.localScale = new Vector3(0.5f,0.5f,1.0f);
+                        clone[x,y].GetComponent<SoilTile>().OccupieTile();
+
+                    } else if (tool == 58)
+                    {
+                        plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
+                        plantArray[x,y].GetComponent<Rose>().rememberTile = clone[x,y];
+                        plantArray[x,y].transform.localScale = new Vector3(0.5f,0.5f,1.0f);
+                        clone[x,y].GetComponent<SoilTile>().OccupieTile();
+
+                    }
+                }
+                
             }
         }
     }
@@ -120,6 +154,5 @@ public class GridSystem : MonoBehaviour {
             item.GetComponent<SoilTile>().Water();
         }
     }
-
 
 }
