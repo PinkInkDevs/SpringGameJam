@@ -11,7 +11,7 @@ public class SceneManger : MonoBehaviour
     
     void Start()
     {
-        grid = new GridSystem(4, 2, 1.0f, new Vector3(0, 0));
+        //grid = new GridSystem(4, 2, 1.0f, new Vector3(0, 0));
 
 
     }
