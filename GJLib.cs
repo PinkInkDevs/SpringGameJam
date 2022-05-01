@@ -38,27 +38,55 @@ public static class GJLib
         return textMesh;
     }
     // Get Mouse Position in World with Z = 0f
-        public static Vector3 GetMouseWorldPosition() {
-            Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-            vec.z = 0f;
-            return vec;
-        }
+    public static Vector3 GetMouseWorldPosition() {
+        Vector3 vec = GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+        vec.z = 0f;
+        return vec;
+    }
 
-        public static Vector3 GetMouseWorldPositionWithZ() {
-            return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
-        }
+    public static Vector3 GetMouseWorldPositionWithZ() {
+        return GetMouseWorldPositionWithZ(Input.mousePosition, Camera.main);
+    }
 
-        public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera) {
-            return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
-        }
+    public static Vector3 GetMouseWorldPositionWithZ(Camera worldCamera) {
+        return GetMouseWorldPositionWithZ(Input.mousePosition, worldCamera);
+    }
 
-        public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera) {
-            Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
-            return worldPosition;
-        }
+    public static Vector3 GetMouseWorldPositionWithZ(Vector3 screenPosition, Camera worldCamera) {
+        Vector3 worldPosition = worldCamera.ScreenToWorldPoint(screenPosition);
+        return worldPosition;
+    }
 
-        public static Vector3 GetDirToMouse(Vector3 fromPosition) {
-            Vector3 mouseWorldPosition = GetMouseWorldPosition();
-            return (mouseWorldPosition - fromPosition).normalized;
+    public static Vector3 GetDirToMouse(Vector3 fromPosition) {
+        Vector3 mouseWorldPosition = GetMouseWorldPosition();
+        return (mouseWorldPosition - fromPosition).normalized;
+    }
+
+    // Create a Sprite in the World
+    public static GameObject CreateWorldSprite(Transform parent, string name, Sprite sprite, Vector3 localPosition, Vector3 localScale, int sortingOrder, Color color) {
+        GameObject gameObject = new GameObject(name, typeof(SpriteRenderer));
+        Transform transform = gameObject.transform;
+        transform.SetParent(parent, false);
+        transform.localPosition = localPosition;
+        transform.localScale = localScale;
+        SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sprite;
+        spriteRenderer.sortingOrder = sortingOrder;
+        spriteRenderer.color = color;
+        return gameObject;
+    }
+
+    public static Vector3 Round(this Vector3 vector3, int decimalPlaces = 2)
+    {
+        float multiplier = 1;
+        for (int i = 0; i < decimalPlaces; i++)
+        {
+            multiplier *= 10f;
         }
+        return new Vector3(
+            Mathf.Round(vector3.x * multiplier) / multiplier,
+            Mathf.Round(vector3.y * multiplier) / multiplier,
+            Mathf.Round(vector3.z * multiplier) / multiplier);
+    }
+    
 }

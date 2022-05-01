@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Testing : MonoBehaviour{
+public class Testing : MonoBehaviour
+{
 //creates the grid
     public GridSystem grid;
 
     private int[] items = new int[] {1,2,56};
     private int heldItemIndex = 0;
+    public GameObject soilTemplate;
     
 
     public void Start(){ 
-        grid = new GridSystem(4 ,2 , 10f, new Vector3(20,0));
-        new GridSystem(2 ,2 , 10f, new Vector3(0,0));
-        new GridSystem(4 ,2 , 5f, new Vector3(-50,0));
+        grid = new GridSystem(4 ,2 , 1f, new Vector3(20,0), soilTemplate);
     }
 
     public void Update(){
