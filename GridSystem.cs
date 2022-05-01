@@ -24,9 +24,8 @@ public class GridSystem : MonoBehaviour {
     private GameObject hold;
 
 
-    public GameObject GetPlant(int x, int y) { return plantArray[x, y]; }
-    public int GetWidth() { return width; }
-    public int GetHeight() { return height; }   
+    public GameObject[,] GetPlants() { return plantArray; }
+  
 
     
     public GridSystem(int width, int height, float cellSize, Vector3 originPos, GameObject template){
@@ -45,7 +44,7 @@ public class GridSystem : MonoBehaviour {
         for (int x = 0; x < gridArray.GetLength(0); x++){
             for (int y = 0; y<gridArray.GetLength(1); y++){
                 tempPos = (GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) * .5f);
-                debugTextArray[x,y] = GJLib.CreateWorldText(gridArray[x,y].ToString(), null, tempPos, 2, Color.white, TextAnchor.MiddleCenter);
+                debugTextArray[x,y] = GJLib.CreateWorldText("", null, tempPos, 2, Color.white, TextAnchor.MiddleCenter);
                 //creates tile object placement
                 clone[x,y] = CreateTiles(soilTemplate,tempPos);
                 Debug.DrawLine(GetWorldPosition(x,y), GetWorldPosition(x+1,y), Color.white, 100f);
@@ -59,7 +58,7 @@ public class GridSystem : MonoBehaviour {
     }
     //methods used for creating array
     private Vector3 GetWorldPosition(int x, int y){
-        return new Vector3(x, y) * cellSize + originPos; //+ originPos;
+        return new Vector3(x, y) * cellSize + originPos;
     }
     private void GetXY(Vector3 worldPosition, out int x, out int y){
         x = Mathf.FloorToInt((worldPosition-originPos).x / cellSize);
@@ -68,8 +67,8 @@ public class GridSystem : MonoBehaviour {
 
     public void SetValue(int x, int y, int value){
         if (x >= 0 && y >= 0 && x < width && y < height){
-            gridArray[x,y] = value;
-            debugTextArray[x,y].text = gridArray[x,y].ToString();
+            //gridArray[x,y] = value;
+            debugTextArray[x, y].text = "";//gridArray[x,y].ToString();
         }
     }
 

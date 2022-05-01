@@ -36,17 +36,7 @@ public class BasePlant : MonoBehaviour
         {
             readyToBePicked = true;
         }
-    }
-
-    public void ChangeSprite()
-    {
-
-        Debug.Log("Here");
-        if (growthLevel == 0)
-        {
-            flowerStage.sprite = seeds;
-        }
-        else if (growthLevel == 1)
+        if (growthLevel == 1)
         {
             flowerStage.sprite = sprout;
         }
@@ -54,11 +44,9 @@ public class BasePlant : MonoBehaviour
         {
             flowerStage.sprite = flower;
         }
-
-
     }
 
-    bool PickUp()
+    public bool PickUp()
     {
         return readyToBePicked;
     }

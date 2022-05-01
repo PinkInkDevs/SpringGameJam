@@ -1,4 +1,4 @@
-using System.Collections;
+/*using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -22,7 +22,7 @@ public class Testing : MonoBehaviour
 
     public void Update(){
         if (Input.GetMouseButtonDown(0)){
-            Debug.Log("here");
+            //Debug.Log("here");
             temp = GJLib.GetMouseWorldPosition();
             if ( grid.GetValue(temp) !=-1)
             {
@@ -85,3 +85,4 @@ public class Testing : MonoBehaviour
 
     
 }
+*/

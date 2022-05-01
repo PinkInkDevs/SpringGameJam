@@ -909,7 +909,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1606259159}
   - component: {fileID: 1606259158}
-  - component: {fileID: 1606259160}
   m_Layer: 0
   m_Name: SceneManger
   m_TagString: Untagged
@@ -932,6 +931,10 @@ MonoBehaviour:
   flowers: {fileID: 0}
   player: {fileID: 1087571058}
   house: {fileID: 2001183667}
+  soilTemplate: {fileID: 2388037895969131158, guid: c69351094ec329b45803f0b4ba6d2502, type: 3}
+  daiseyTemplate: {fileID: 4580917180078134005, guid: b0bb2d00fd114534886aca211297ccb6, type: 3}
+  tulipTemplate: {fileID: 2203199045006245723, guid: ed1f499c335ce6f40a52f2f5f7e2ee2c, type: 3}
+  roseTemplate: {fileID: 3240793358075269219, guid: 4c77549285eb3704d907b911ddcbe7c0, type: 3}
 --- !u!4 &1606259159
 Transform:
   m_ObjectHideFlags: 0
@@ -947,23 +950,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1606259160
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1606259157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd0b1cc0b412a0d488f043c4169156ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  grid: {fileID: 0}
-  soilTemplate: {fileID: 2388037895969131158, guid: c69351094ec329b45803f0b4ba6d2502, type: 3}
-  daiseyTemplate: {fileID: 4580917180078134005, guid: b0bb2d00fd114534886aca211297ccb6, type: 3}
-  tulipTemplate: {fileID: 2203199045006245723, guid: ed1f499c335ce6f40a52f2f5f7e2ee2c, type: 3}
-  roseTemplate: {fileID: 3240793358075269219, guid: 4c77549285eb3704d907b911ddcbe7c0, type: 3}
 --- !u!1 &1700688223
 GameObject:
   m_ObjectHideFlags: 0
