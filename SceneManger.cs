@@ -6,41 +6,61 @@ public class SceneManger : MonoBehaviour
 {
     private float timer = 0.0f;
     private int daysPast = 0;
+    private int gridX = 6;
+    private int gridY = 4;
+    private GameObject[,] plantArray;
     public GameObject flowers;
-    private GridSystem grid;
     public GameObject player;
     public HouseEnter house;
     private float timeForDoor = 0.0f;
     private float scaleDilf = 2.0f;
+    public GridSystem grid;
+    //56 seed 1 is trowel/hoe 2 is water can
+    private int[] items = new int[] {1,2,56,57,58};
+    private int heldItemIndex = 0;
+    public GameObject soilTemplate;
+    public GameObject daiseyTemplate;
+    public GameObject tulipTemplate;
+    public GameObject roseTemplate;
+    private Vector3 temp;
 
     void Start()
     {
-        //grid = new GridSystem(4, 2, 1.0f, new Vector3(0, 0));
-        player.transform.position = new Vector3(11.5f, 1.5f, 0.0f);
+        grid = new GridSystem(gridX, gridY, 1.0f, new Vector3(0, 0), soilTemplate);
+       /*player.transform.position = new Vector3(11.5f, 1.5f, 0.0f);
         player.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
         player.GetComponent<FarmerMove>().enabled = true;
+        */
         timeForDoor = 0.0f;
         scaleDilf = 2.0f;
+        
 
     }
 
 
     void NewDay()
     {
+
+        Debug.Log("New Day!");
         timer = 0.0f;
         timeForDoor = 0.0f;
         scaleDilf = 2.0f;
         daysPast++;
-        house.CloseDoor();
+        GrabPlantArray();
+        UpdatePlantArray(plantArray);
+        //house.CloseDoor();
+        
 
        
 
 
 
         //Set the player on the porche 
+        /*
         player.transform.position = new Vector3(11.5f, 1.5f, 0.0f);
         player.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
         player.GetComponent<FarmerMove>().enabled = true;
+        */
 
     }
 
@@ -49,13 +69,13 @@ public class SceneManger : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 100)
+        if (timer > 10)
         {
             GoToSleep();
             NewDay();
         }
 
-        if (house.IsDoorOpen())
+        /*if (house.IsDoorOpen())
         {
             timeForDoor += Time.deltaTime;
 
@@ -70,20 +90,96 @@ public class SceneManger : MonoBehaviour
         }
         else { timeForDoor = 0.0f; }
 
+      */
+   
+        if (Input.GetMouseButtonDown(0)){
+            Debug.Log("here");
+            temp = GJLib.GetMouseWorldPosition();
+            if ( grid.GetValue(temp) !=-1)
+            {
+                grid.SetValue(temp, items[heldItemIndex]);
+                //seeds not yet made thus null
+                if(items[heldItemIndex]==56){
+                    grid.UpdateSoilTile(temp, items[heldItemIndex], daiseyTemplate);
+                } else if (items[heldItemIndex]==57) {
+                    grid.UpdateSoilTile(temp, items[heldItemIndex], tulipTemplate);
+                } else if (items[heldItemIndex]==58){
+                    grid.UpdateSoilTile(temp, items[heldItemIndex], roseTemplate);
+                } else {
+                    grid.UpdateSoilTile(temp, items[heldItemIndex]);
+                }
+                
+            }
+            
+        }
+
+        if (Input.GetMouseButtonDown(1)){
+            Debug.Log(grid.GetValue(GJLib.GetMouseWorldPosition()));
+            
+        }
+        //temp for holding item
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            Debug.Log("key 1 was pressed");
+            heldItemIndex=0;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            Debug.Log("key 2 was pressed");
+            heldItemIndex=1;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            Debug.Log("key 3 was pressed");
+            heldItemIndex=2;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            Debug.Log("key 4 was pressed");
+            heldItemIndex=3;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha5))
+        {
+            Debug.Log("key 4 was pressed");
+            heldItemIndex=4;
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha6))
+        {
+            grid.AllSoilDryUp();
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha7))
+        {
+            grid.AllSoilWatered();
+        }
 
     }
 
 
     void GoToSleep()
     {
-
-
+        /*
         player.transform.position = new Vector3(11.5f, 2.2f, 0.0f);
         player.GetComponent<FarmerMove>().enabled = false;
         player.transform.localScale = new Vector3(scaleDilf, scaleDilf, 1.0f);
-
+        */
         if (scaleDilf >= 0.0f) { scaleDilf -= 0.01f; }
 
     }
 
+    public void GrabPlantArray()
+    {
+        this.plantArray = grid.PassPlantArray();
+    }
+    public void UpdatePlantArray(GameObject[,] array)
+    {
+        foreach(GameObject item in array)
+        {
+            if(item != null)
+            {
+                Debug.Log("Plant Object found");
+                item.GetComponent<BasePlant>().Grow();
+            }
+        }
+    }
+    
 }

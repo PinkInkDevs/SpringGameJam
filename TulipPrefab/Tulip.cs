@@ -6,6 +6,6 @@ public class Tulip : BasePlant
 {
 
     void Start(){
-        maxGrowth = 5;
+        //maxGrowth = 5;
     }
 }

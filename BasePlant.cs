@@ -24,13 +24,21 @@ public class BasePlant : MonoBehaviour
     //Watered is called when plant is being watered
     public bool CheckWatered() //Will check 
     {
+        Debug.Log(rememberTile.GetComponent<SoilTile>().IsWatered());
         return rememberTile.GetComponent<SoilTile>().IsWatered();
     }
 
     public void Grow(){
-        if (CheckWatered())
+        if (CheckWatered()==true)
         {
             growthLevel++;
+        }
+        if (growthLevel==1)
+        {
+            flowerStage.sprite = sprout;
+        } else if (growthLevel == 2)
+        {
+            flowerStage.sprite = flower;
         }
         if(growthLevel >= maxGrowth)
         {
