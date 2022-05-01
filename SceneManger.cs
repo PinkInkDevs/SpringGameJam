@@ -38,7 +38,7 @@ public class SceneManger : MonoBehaviour
         {
             NewDay();
         }
-        Debug.Log(timer);
+        //Debug.Log(timer);
 
     }
 }
