@@ -4,33 +4,33 @@ using UnityEngine;
 
 public class BasePlant : MonoBehaviour
 {
+    public bool watered = false;
     public int growthLevel = 0;
-    public int maxGrowth = 3;
+    private int maxGrowth = 3;
     public bool readyToBePicked = false;
     public SpriteRenderer flowerStage;
     public Sprite seeds;
     public Sprite sprout;
     public Sprite flower;
-    public GameObject rememberTile;
- 
 
 
     // Update is called once per frame
-    public void CreatePlant(GameObject soilTiles)
+    void Update()
     {
-        this.rememberTile = soilTiles;
+        
     }
 
     //Watered is called when plant is being watered
-    public bool CheckWatered() //Will check 
+    public void Watered() //Will check 
     {
-        return rememberTile.GetComponent<SoilTile>().IsWatered();
+        watered = true;
     }
 
     public void Grow(){
-        if (CheckWatered())
+        if (watered)
         {
             growthLevel++;
+            watered=false;
         }
         if(growthLevel >= maxGrowth)
         {
@@ -58,9 +58,15 @@ public class BasePlant : MonoBehaviour
 
     }
 
-    bool PickUp()
-    {
-        return readyToBePicked;
+    void PickUp(){
+        if (readyToBePicked)
+        {
+            //Get's picked up here
+
+        }
+
+
+
     }
 
 
