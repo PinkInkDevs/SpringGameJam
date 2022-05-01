@@ -6047,5 +6047,9 @@ PrefabInstance:
       propertyPath: m_hasFontAssetChanged
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7562168530176141959, guid: 8cb997a49b2375c459762c2d6922c1b7, type: 3}
+      propertyPath: m_text
+      value: Harvest Spring
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8cb997a49b2375c459762c2d6922c1b7, type: 3}

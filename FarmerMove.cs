@@ -6,6 +6,7 @@ public class FarmerMove : MonoBehaviour
 {
     public float moveSpeed;
     public Rigidbody2D rigidbody;
+    public Animator animFarmer;
     private Vector2 moveDirection;
 
 
@@ -41,5 +42,11 @@ public class FarmerMove : MonoBehaviour
     void Move()
     {
         rigidbody.velocity = new Vector2(moveDirection.x * moveSpeed, moveDirection.y * moveSpeed);
+
+        //Animation here
+        animFarmer.SetFloat("SpeedX", moveDirection.x);
+        animFarmer.SetFloat("SpeedY", moveDirection.y);
+
+
     }
 }
