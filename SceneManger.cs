@@ -6,10 +6,12 @@ public class SceneManger : MonoBehaviour
 {
     private float timer = 0.0f;
     private int daysPast = 0;
+    private float timeForDay = 100;
     public GameObject flowers;
     private GridSystem grid;
     public GameObject player;
     public HouseEnter house;
+    public GameObject sunTimer;
     private float timeForDoor = 0.0f;
     private float scaleDilf = 2.0f;
     private GameObject[,] clone;
@@ -24,7 +26,7 @@ public class SceneManger : MonoBehaviour
 
     void Start()
     {
-        grid = new GridSystem(6, 4, 1f, new Vector3(0, 0), soilTemplate);
+        grid = new GridSystem(16, 8, 1f, new Vector3(-12, -4), soilTemplate);
         player.transform.position = new Vector3(11.5f, 1.5f, 0.0f);
         player.transform.localScale = new Vector3(2.0f, 2.0f, 1.0f);
         player.GetComponent<FarmerMove>().enabled = true;
@@ -48,10 +50,11 @@ public class SceneManger : MonoBehaviour
         foreach (GameObject plant in clone ) {
             if (plant != null) {
                 plant.GetComponent<BasePlant>().Grow();
-
+                plant.GetComponent<BasePlant>().rememberTile.GetComponent<SoilTile>().Unwater();
             }
         }
 
+        grid.AllSoilDryUp();
 
 
         //Set the player on the porche 
@@ -66,7 +69,10 @@ public class SceneManger : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 10)
+        sunTimer.transform.position = new Vector3(-13.8f, ((12.6f/timeForDay)* -timer) + 6.3f, 0.0f);
+
+
+        if (timer > timeForDay)
         {
             GoToSleep();
             NewDay();
@@ -87,10 +93,14 @@ public class SceneManger : MonoBehaviour
         }
         else { timeForDoor = 0.0f; }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetKeyDown("space"))
         {
+            player.GetComponent<Animator>().SetBool("water", true);
+            player.GetComponent<FarmerMove>().enabled = false;
             Debug.Log("reading temp");
-            temp = GJLib.GetMouseWorldPosition();
+            //temp = GJLib.GetMouseWorldPosition();
+            temp = player.transform.position;
+            temp.y -= 0.7f;
             if (grid.GetValue(temp) != -1)
             {
                 grid.SetValue(temp, items[heldItemIndex]);
@@ -114,6 +124,12 @@ public class SceneManger : MonoBehaviour
 
             }
 
+            
+
+        }
+
+        if (Input.GetKeyUp("space")) { player.GetComponent<Animator>().SetBool("water", false);
+            player.GetComponent<FarmerMove>().enabled = true;
         }
 
         if (Input.GetMouseButtonDown(1))

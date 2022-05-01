@@ -102,7 +102,19 @@ public class GridSystem : MonoBehaviour {
     //water Soil plant and harvest
     public void UpdateSoilTile(Vector3 worldPosition, int tool, GameObject plantTemplate = null)
     {
-        if (tool == 2){
+        if ( tool == 1 )
+        {
+            int x, y;
+            GetXY(worldPosition, out x, out y);
+            if (GetValue(x, y) != -1)
+            {
+                clone[x, y].GetComponent<SoilTile>().UnoccupieTile();
+                Destroy((plantArray[x, y]));
+                plantArray[x, y] = null;
+
+            }
+        }
+        else if (tool == 2){
             int x,y;
             GetXY(worldPosition, out x, out y);
             if (GetValue(x,y)!= -1)
@@ -110,8 +122,7 @@ public class GridSystem : MonoBehaviour {
                 hold = clone[x,y];
                 hold.GetComponent<SoilTile>().Water();
             }
-        }
-        else if (tool > 2){
+        }else if (tool > 2){
             int x,y;
             GetXY(worldPosition, out x, out y);
             if (GetValue(x,y) != -1)
