@@ -100,17 +100,23 @@ public class GridSystem : MonoBehaviour {
         return Instantiate(plantTemplate, tempPos, Quaternion.identity);
     }  
     //water Soil plant and harvest
-    public void UpdateSoilTile(Vector3 worldPosition, int tool, GameObject plantTemplate = null)
+    public bool UpdateSoilTile(Vector3 worldPosition, int tool, GameObject plantTemplate = null)
     {
-        if ( tool == 1 )
+        if (tool == 1)
         {
             int x, y;
             GetXY(worldPosition, out x, out y);
             if (GetValue(x, y) != -1)
             {
-                clone[x, y].GetComponent<SoilTile>().UnoccupieTile();
-                Destroy((plantArray[x, y]));
-                plantArray[x, y] = null;
+                if (clone[x, y].GetComponent<SoilTile>().IsOccupied() == true)
+                {
+                    clone[x, y].GetComponent<SoilTile>().UnoccupieTile();
+                    Debug.Log(plantArray[x, y].GetComponent<BasePlant>().typeSeed);
+                    Destroy((plantArray[x, y]));
+                    plantArray[x, y] = null;
+                    return false;
+                }
+
 
             }
         }
@@ -121,6 +127,7 @@ public class GridSystem : MonoBehaviour {
             {
                 hold = clone[x,y];
                 hold.GetComponent<SoilTile>().Water();
+                
             }
         }else if (tool > 2){
             int x,y;
@@ -135,6 +142,7 @@ public class GridSystem : MonoBehaviour {
                         plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
                         plantArray[x,y].GetComponent<Daisey>().rememberTile = clone[x,y];
                         clone[x,y].GetComponent<SoilTile>().OccupieTile();
+                        
                     } else if (tool == 57)
                     {
                         plantArray[x,y] = CreatePlants(plantTemplate, clone[x,y].GetComponent<SoilTile>().transform.position);
@@ -150,10 +158,12 @@ public class GridSystem : MonoBehaviour {
                         clone[x,y].GetComponent<SoilTile>().OccupieTile();
 
                     }
+                    return true;
                 }
                 
             }
         }
+        return false;
     }
     //all soilTiles dry up
     public void AllSoilDryUp()

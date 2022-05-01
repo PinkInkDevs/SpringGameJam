@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class SceneManger : MonoBehaviour
 {
@@ -23,6 +24,14 @@ public class SceneManger : MonoBehaviour
     public GameObject tulipTemplate;
     public GameObject roseTemplate;
     private Vector3 temp;
+
+    public int seed56 = 16;
+    public int seed57 = 16;
+    public int seed58 = 16;
+
+    public GameObject roseText;
+    public GameObject daiseyText;
+    public GameObject tulipText;
 
     void Start()
     {
@@ -67,6 +76,13 @@ public class SceneManger : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        roseText.GetComponent<TextMeshProUGUI>().text = "Roses:" + seed58;
+        daiseyText.GetComponent<TextMeshProUGUI>().text = "Daisey:" + seed56;
+        tulipText.GetComponent<TextMeshProUGUI>().text = "Tulips:" + seed57;
+
+
+
         timer += Time.deltaTime;
 
         sunTimer.transform.position = new Vector3(-13.8f, ((12.6f/timeForDay)* -timer) + 6.3f, 0.0f);
@@ -105,21 +121,27 @@ public class SceneManger : MonoBehaviour
             {
                 grid.SetValue(temp, items[heldItemIndex]);
                 //seeds not yet made thus null
-                if (items[heldItemIndex] == 56)
+                if (items[heldItemIndex] == 56 && seed56 > 0)
                 {
-                    grid.UpdateSoilTile(temp, items[heldItemIndex], daiseyTemplate);
+                    
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], daiseyTemplate)) { seed56--; }
+                    
                 }
-                else if (items[heldItemIndex] == 57)
+                else if (items[heldItemIndex] == 57 && seed57 > 0)
                 {
-                    grid.UpdateSoilTile(temp, items[heldItemIndex], tulipTemplate);
+                    
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], tulipTemplate)) { seed57--; }
+                    
                 }
-                else if (items[heldItemIndex] == 58)
+                else if (items[heldItemIndex] == 58 && seed58 > 0)
                 {
-                    grid.UpdateSoilTile(temp, items[heldItemIndex], roseTemplate);
+                   
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex], roseTemplate)) { seed58--; }
+                   
                 }
                 else
                 {
-                    grid.UpdateSoilTile(temp, items[heldItemIndex]);
+                    if(grid.UpdateSoilTile(temp, items[heldItemIndex])) { }//pass
                 }
 
             }

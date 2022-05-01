@@ -7,5 +7,6 @@ public class Tulip : BasePlant
 
     void Start(){
         maxGrowth = 5;
+        typeSeed = 57;
     }
 }

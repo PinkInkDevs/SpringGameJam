@@ -6,5 +6,6 @@ public class Rose : BasePlant
 {
     void Start(){
         maxGrowth = 7;
+        typeSeed = 58;
     } 
 }

@@ -12,6 +12,7 @@ public class BasePlant : MonoBehaviour
     public Sprite sprout;
     public Sprite flower;
     public GameObject rememberTile;
+    public int typeSeed = 56;
  
 
 
