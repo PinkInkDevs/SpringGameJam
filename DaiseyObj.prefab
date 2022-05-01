@@ -28,6 +28,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 10.238759, y: -2.6291897, z: -14.72552}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -41,19 +42,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 4580917180078134005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 158ca327946a7ce47ad2b6e74e1986b0, type: 3}
+  m_Script: {fileID: 11500000, guid: 8d6605a7703bca344855c0a08d37467a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   growthLevel: 0
+  maxGrowth: 3
   readyToBePicked: 0
   flowerStage: {fileID: 4580917180078134006}
-  seeds: {fileID: 7766146017427266439, guid: 903fcae1739fea8468128a0dc6c1d1b1, type: 3}
-  sprout: {fileID: -310049848298052847, guid: 903fcae1739fea8468128a0dc6c1d1b1, type: 3}
-  flower: {fileID: -8204091944364608423, guid: 903fcae1739fea8468128a0dc6c1d1b1, type: 3}
+  seeds: {fileID: 254146185, guid: 4658cc3c33d4e2a4e87a2496c4f2618d, type: 3}
+  sprout: {fileID: 1736930089, guid: 4658cc3c33d4e2a4e87a2496c4f2618d, type: 3}
+  flower: {fileID: 636404565, guid: 4658cc3c33d4e2a4e87a2496c4f2618d, type: 3}
   rememberTile: {fileID: 0}
-  growthLevel: 0
-  readyToBePicked: 0
-  flowerStage: {fileID: 0}
 --- !u!212 &4580917180078134006
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -65,6 +64,7 @@ SpriteRenderer:
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -93,8 +93,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 7766146017427266439, guid: 903fcae1739fea8468128a0dc6c1d1b1, type: 3}
+  m_SortingOrder: 1
+  m_Sprite: {fileID: 254146185, guid: 4658cc3c33d4e2a4e87a2496c4f2618d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

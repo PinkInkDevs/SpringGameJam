@@ -33,10 +33,7 @@ public class SceneManger : MonoBehaviour
         daysPast++;
         house.CloseDoor();
 
-        BasePlant flowersScript = flowers.GetComponent<Rose>();
-        flowersScript.Watered();
-        flowersScript.Grow();
-        flowersScript.ChangeSprite();
+       
 
 
 
